@@ -3,7 +3,7 @@ package EmailApp;
 import java.util.Random;
 import java.util.Scanner;
 
-
+//source: youtube: java project step by step building an email administration application
 public class Email {
     private String firstName;
     private String lastName;
@@ -18,9 +18,35 @@ public class Email {
 
     public Email() {
     }
+    //You can also call every method from the constructor!
+    void generate(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your first name: ");
+        this.firstName = scanner.nextLine().trim();
+
+        System.out.println("Enter your last name: ");
+        this.lastName = scanner.nextLine().trim();
+
+        System.out.println("Enter your company name: ");
+        this.company = scanner.nextLine().trim();
+
+        System.out.println("Enter your department name: ");
+        this.department = scanner.nextLine().trim();
+
+        this.generateEmail();
+        this.generatePassword(9);
+
+        System.out.println("Would you like to change your password? Y/N");
+        char toChangePW = scanner.next().charAt(0);
+        this.option = Character.toUpperCase(toChangePW);
+
+        this.changePassword(option);
+
+
+    }
 
     void generateEmail(){
-        System.out.println("Your email address is: "+ firstName + "." + lastName + "@" + department + "." + company + ".com");
+        System.out.println("Your email address is: "+ firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department + "." + company + ".com");
     }
     void generatePassword(int length) {
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -59,35 +85,8 @@ public class Email {
         }
     }
 
-    void generate(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your first name: ");
-        this.firstName = scanner.nextLine().trim();
 
-        System.out.println("Enter your last name: ");
-        this.lastName = scanner.nextLine().trim();
-
-        System.out.println("Enter your company name: ");
-        this.company = scanner.nextLine().trim();
-
-        System.out.println("Enter your department name: ");
-        this.department = scanner.nextLine().trim();
-
-        this.generateEmail();
-        this.generatePassword(9);
-
-        System.out.println("Would you like to change your password? Y/N");
-        char toChangePW = scanner.next().charAt(0);
-        this.option = Character.toUpperCase(toChangePW);
-
-        this.changePassword(option);
-
-
-
-
-
-
-    }
+    //ABOVE METHODS ARE IN PRIVATE OR DEFAULT ACCESS, BELOW ARE PUBLIC, BEST PRACTICE!
 
     public String getFirstName() {
         return firstName;
